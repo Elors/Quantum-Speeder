@@ -9,27 +9,21 @@
 // @match        https://videoadmin.chinahrt.com/videoPlay/play*
 // @run-at       document-end
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        GM_setValue
-// @grant        GM_getValue
-// @grant        GM_deleteValue
-// @grant        GM_addValueChangeListener
 // ==/UserScript==
 
 var foo = "https://web.chinahrt.com/index.html";
 var bar = "https://videoadmin.chinahrt.com/videoPlay/play";
-var k = "elorsat_change_limit_su";
-var v = 9947624;
-var d = false;
 // let's go!
 if (window.location.href.startsWith(bar)) {
     // in deep
     console.log('let\'s go!');
     try {
-        // remove limit
+        // remove limits
         attrset.allowPlayRate = 1;
         attrset.ifPauseBlur = false;
+        attrset.ifCanDrag = true;
         job();
-        console.info('@internal: allow play rate set');
+        console.info('@internal: rm limits');
     } catch (e) {
         console.info('failure?!...', e);
     }
@@ -39,7 +33,7 @@ async function job() {
     try {
         // set playrate to 16x
         document.getElementsByTagName('video')[0].playbackRate = 16;
-        // play (must set mute so that can be played without user interact due to google policy)
+        // play (must set muted so that can be played without user interact due to the google policy)
         player.videoMute();
         document.getElementsByTagName('video')[0].play();
     } catch (e) {
@@ -47,7 +41,6 @@ async function job() {
         await sleep(300);
         job();
     }
-    GM_deleteValue(k);
 }
 
 function sleep(ms) {
