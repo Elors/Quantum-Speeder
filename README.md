@@ -1,2 +1,10 @@
 # Quantum-Speeder
-A userscript that for internal use only.
+播课限制解除插件(for chinahrt.com)
+
+## 功能
+1. 16倍速播放
+2. 切到后台不会暂停
+3. 进度条可拖拽
+4. 连续播放时自动播放
+
+脚本支持区域：北京地区
